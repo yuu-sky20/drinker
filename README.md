@@ -6,7 +6,12 @@
 - Spring WebFlux で実装
 - GoF の理解のために作成
 
-## design
+## Try this app
+
+1. ビルドしてローカルでアプリケーションを立ち上げる。次のシェルコマンドを実行: `./gradlew bootRun`
+2. `http://localhost:8080` の各エンドポイントに対してリクエストを投げる
+
+## Design
 
 ### commands
 
