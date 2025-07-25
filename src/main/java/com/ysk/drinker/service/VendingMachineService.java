@@ -25,4 +25,8 @@ public class VendingMachineService {
   public Mono<Map<String, Drink>> listDrinks() {
     return Mono.just(machine.getInventory());
   }
+
+  public Mono<Map<String, String>> getCurrentState() {
+    return Mono.just(Map.of("state", machine.getCurrentStateName()));
+  }
 }

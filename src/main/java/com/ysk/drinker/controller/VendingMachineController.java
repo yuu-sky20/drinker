@@ -31,4 +31,9 @@ public class VendingMachineController {
   public Mono<Drink> buyDrink(@PathVariable String name) {
     return service.buyDrink(name);
   }
+
+  @GetMapping("/state")
+  public Mono<Map<String, String>> getState() {
+    return service.getCurrentState();
+  }
 }
