@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.ysk.drinker.command.impl.BuyDrinkCommand;
 import com.ysk.drinker.command.impl.CancelCommand;
+import com.ysk.drinker.command.impl.ChangeStrategyCommand;
 import com.ysk.drinker.command.impl.InsertMoneyCommand;
 import com.ysk.drinker.model.Drink;
 import com.ysk.drinker.model.VendingMachine;
@@ -35,5 +36,9 @@ public class VendingMachineService {
 
   public Mono<Map<String, String>> getCurrentState() {
     return Mono.just(Map.of("state", machine.getCurrentStateName()));
+  }
+
+  public Mono<String> setPriceStrategy(String type) {
+    return new ChangeStrategyCommand(machine, type).execute();
   }
 }

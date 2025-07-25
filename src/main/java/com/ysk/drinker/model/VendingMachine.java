@@ -8,6 +8,8 @@ import com.ysk.drinker.state.impl.DispendingState;
 import com.ysk.drinker.state.impl.HasMoneyState;
 import com.ysk.drinker.state.impl.IdleState;
 import com.ysk.drinker.state.impl.SoldOutState;
+import com.ysk.drinker.strategy.PriceStrategy;
+import com.ysk.drinker.strategy.impl.NormalPriceStrategy;
 
 import reactor.core.publisher.Mono;
 
@@ -21,6 +23,8 @@ public class VendingMachine {
   private final VendingState soldOutState;
 
   private int currentAmount;
+
+  private PriceStrategy priceStrategy = new NormalPriceStrategy();
 
   public VendingMachine() {
     inventory.put("cola", new Drink("Cola", 120, true));
@@ -43,12 +47,20 @@ public class VendingMachine {
   }
 
   public Map<String, Drink> getInventory() { return inventory; }
+
   public VendingState getIdleState() { return idleState; }
   public VendingState getHashMoneyState() { return hasMoneyState; }
   public VendingState getDispensingState() { return dispendingState; }
   public VendingState getSoldOutState() { return soldOutState; }
+
   public String getCurrentStateName() { return state.getClass().getSimpleName(); }
   public void setState(VendingState state) { this.state = state; }
+
   public int getCurrentAmount() { return currentAmount; }
   public void setCurrentAmount(int currentAmount) { this.currentAmount = currentAmount; }
+
+  public PriceStrategy getPriceStrategy() { return priceStrategy; }
+  public void setPriceStrategy(PriceStrategy priceStrategy) { this.priceStrategy = priceStrategy; }
+
+  public int getCalculatedPrice(Drink drink) { return priceStrategy.calculatePrice(drink); }
 }

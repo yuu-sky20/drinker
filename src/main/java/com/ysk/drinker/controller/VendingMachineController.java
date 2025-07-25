@@ -41,4 +41,9 @@ public class VendingMachineController {
   public Mono<Map<String, String>> getState() {
     return service.getCurrentState();
   }
+
+  @PostMapping("/strategy/{type}")
+  public Mono<String> setStrategy(@PathVariable String type) {
+    return service.setPriceStrategy(type);
+  }
 }

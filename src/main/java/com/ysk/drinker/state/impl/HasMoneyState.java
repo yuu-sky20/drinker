@@ -33,12 +33,14 @@ public class HasMoneyState implements VendingState {
       return Mono.error(new IllegalArgumentException("Drink not available"));
     }
 
-    if (machine.getCurrentAmount() < drink.getPrice()) {
+    int price = machine.getCalculatedPrice(drink);
+
+    if (machine.getCurrentAmount() < price) {
       return Mono.error(new IllegalArgumentException("Insufficient funds"));
     }
 
 
-    machine.setCurrentAmount(machine.getCurrentAmount() - drink.getPrice());
+    machine.setCurrentAmount(machine.getCurrentAmount() - price);
     machine.setState(machine.getIdleState());
 
 

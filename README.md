@@ -13,14 +13,6 @@
 
 ## Design
 
-### command
-
-| コマンド             | 説明                               |
-| -------------------- | ---------------------------------- |
-| `BuyDrinkCommand`    | 商品を買う                         |
-| `InsertMoneyCOmmand` | お金を投入する                     |
-| `CancelCommand`      | 購入をキャンセルする（オプション） |
-
 ### state
 
 | 状態              | 説明                 |
@@ -30,14 +22,23 @@
 | `SoldOutState`    | 在庫がないときの状態 |
 | `DispensingState` | 商品を出している状態 |
 
+### strategy
+
+| 価格戦略                 | 内容                 |
+| --------------------- | ------------------ |
+| `NormalPriceStrategy` | 通常価格で販売            |
+| `HappyHourStrategy`   | 一定時間だけ割引（例：50円引き）  |
+| `FreeForVIPStrategy`  | VIP顧客には無料で提供（極端な例） |
+
 ### endpoint
 
-| エンドポイント                 | 返す内容                                                                        |
+| エンドポイント                 | 内容                                                                        |
 | ------------------------------ | ------------------------------------------------------------------------------- |
 | `GET /api/vending/drink`       | 商品の一覧                                                                      |
 | `GET /api/vending/state`       | 現在の状態名（`IdleState`, `HasMoneyState`, `SoldOutState`, `DispensingState`） |
 | `POST /api/vending/buy/{name}` | `{name}` の商品を購入する                                                       |
 | `POST /api/vending/cancel`     | 購入をキャンセルする                                                            |
+| `POST /api/vending/strategy/{type}` | 価格戦略（`normal`, `happyhour`, `vip`）を切り替える |
 
 ## LICENSE
 
