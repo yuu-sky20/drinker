@@ -27,10 +27,12 @@
 
 ### endpoint
 
-| 要素           | 内容                                                                            |
-| -------------- | ------------------------------------------------------------------------------- |
-| エンドポイント | `GET /api/vending/state`                                                        |
-| 返す内容       | 現在の状態名（`IdleState`, `HasMoneyState`, `SoldOutState`, `DispensingState`） |
+| エンドポイント                 | 返す内容                                                                        |
+| ------------------------------ | ------------------------------------------------------------------------------- |
+| `GET /api/vending/drink`       | 商品の一覧                                                                      |
+| `GET /api/vending/state`       | 現在の状態名（`IdleState`, `HasMoneyState`, `SoldOutState`, `DispensingState`） |
+| `POST /api/vending/buy/{name}` | `{name}` の商品を購入する                                                       |
+| `POST /api/vending/cancel`     | 購入をキャンセルする                                                            |
 
 ## LICENSE
 
