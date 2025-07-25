@@ -47,8 +47,8 @@ public class VendingMachine {
   public VendingState getHashMoneyState() { return hasMoneyState; }
   public VendingState getDispensingState() { return dispendingState; }
   public VendingState getSoldOutState() { return soldOutState; }
+  public String getCurrentStateName() { return state.getClass().getSimpleName(); }
   public void setState(VendingState state) { this.state = state; }
   public int getCurrentAmount() { return currentAmount; }
   public void setCurrentAmount(int currentAmount) { this.currentAmount = currentAmount; }
-  public String getCurrentStateName() { return state.getClass().getSimpleName(); }
 }

@@ -32,6 +32,11 @@ public class VendingMachineController {
     return service.buyDrink(name);
   }
 
+  @PostMapping("/cancel")
+  public Mono<String> cancel() {
+    return service.cancel();
+  }
+
   @GetMapping("/state")
   public Mono<Map<String, String>> getState() {
     return service.getCurrentState();

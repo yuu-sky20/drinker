@@ -16,7 +16,7 @@ public class HasMoneyState implements VendingState {
 
   @Override
   public Mono<String> insertMoney(int amount) {
-    return Mono.just("Money already inserted: " + amount + "yen");
+    return Mono.just("Money already inserted: " + amount + "yen.");
   }
 
   @Override

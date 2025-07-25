@@ -4,6 +4,9 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.ysk.drinker.command.impl.BuyDrinkCommand;
+import com.ysk.drinker.command.impl.CancelCommand;
+import com.ysk.drinker.command.impl.InsertMoneyCommand;
 import com.ysk.drinker.model.Drink;
 import com.ysk.drinker.model.VendingMachine;
 
@@ -15,11 +18,15 @@ public class VendingMachineService {
   private final VendingMachine machine = new VendingMachine();
 
   public Mono<String> insertMoney(int amount) {
-    return machine.insertMoney(amount);
+    return new InsertMoneyCommand(machine, amount).execute();
   }
 
   public Mono<Drink> buyDrink(String name) {
-    return machine.selectDrink(name);
+    return new BuyDrinkCommand(machine, name).execute();
+  }
+
+  public Mono<String> cancel() {
+    return new CancelCommand(machine).execute();
   }
 
   public Mono<Map<String, Drink>> listDrinks() {
